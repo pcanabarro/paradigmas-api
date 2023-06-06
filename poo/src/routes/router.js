@@ -1,10 +1,12 @@
 const express = require('express');
-const router = express.Router();
 const EmailController = require('../controllers/emailController')
 
 class Router {
   static getRouter() {
-    router.get('/', EmailController.sendEmail);
+    const router = express.Router();
+    router.get('/', (req, res) => res.send('Hello'))
+    router.get('/email', EmailController.getInfo);
+    router.get('/data', EmailController.sendEmail);
 
     return router;
   }

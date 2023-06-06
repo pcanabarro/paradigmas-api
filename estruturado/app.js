@@ -1,20 +1,16 @@
 const express = require('express')
-const path = require('path')
 const nodemailer = require('nodemailer')
 
 const app = express()
-// app.use(express.json())
-// app.use(express.urlencoded({extended: true}))
 app.set('view engine', 'pug')
 app.set('views', 'views')
 
 app.get('/email', (req, res) => {
-  res.render('test')
+  res.render('index')
 })
 
 app.get('/data', (req, res) => {
   const { email, subject, body } = req.query
-  // console.log(res)
   console.log(email, subject, body)
 
   const transporter = nodemailer.createTransport({

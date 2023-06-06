@@ -1,14 +1,14 @@
 const express = require('express');
-const path = require('path');
-const Router = require('./routes/router')
+const Router = require('./routes/router.js')
 
 class App {
   constructor() {
     this.app = express();
     this.port = 3000;
+    this.app.set('view engine', 'pug')
+    this.app.set('views', 'views')
     this.app.use(express.json());
-    this.app.use(express.static('public'));
-    this.app.use(Router.getRouter)
+    this.app.use(Router.getRouter())
   }
 
   start() {
