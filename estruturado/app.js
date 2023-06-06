@@ -1,5 +1,6 @@
 const express = require('express')
 const nodemailer = require('nodemailer')
+require('dotenv').config()
 
 const app = express()
 app.set('view engine', 'pug')
@@ -9,28 +10,26 @@ app.get('/email', (req, res) => {
   res.render('index')
 })
 
-app.get('/data', (req, res) => {
+app.get('/data', async (req, res) => {
   const { email, subject, body } = req.query
   console.log(email, subject, body)
 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    service: "outlook",
     auth: {
-      user: 'pcanabarro.adp@gmail.com',
-      pass: '',
-    },
+      user: 'pedroh.canabarro@hotmail.com',
+      pass: process.env.PASSWORD
+    }
   })
 
   const mailOptions = {
-    from: 'pcanabarro.adp@gmail.com',
+    from: 'pedroh.canabarro@hotmail.com',
     to: email,
     subject: subject,
     text: body,
   }
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error('Erro no envio do email:', error)
       res.status(500).json({ error: 'Falha no envio do email' })
