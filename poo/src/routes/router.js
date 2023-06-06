@@ -4,7 +4,7 @@ const EmailController = require('../controllers/emailController')
 
 class Router {
   static getRouter() {
-    router.post('/email', EmailController.sendEmail);
+    router.get('/', EmailController.sendEmail);
 
     return router;
   }

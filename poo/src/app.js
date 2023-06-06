@@ -7,13 +7,13 @@ class App {
     this.app = express();
     this.port = 3000;
     this.app.use(express.json());
-    this.app.use(express.static(path.join(__dirname, 'public')));
+    this.app.use(express.static('public'));
     this.app.use(Router.getRouter)
   }
 
   start() {
     this.app.listen(this.port, () => {
-      console.log(`Server rodando na porta ${this.port}`);
+      console.log(`Server POO rodando na porta ${this.port}`);
     });
   }
 
