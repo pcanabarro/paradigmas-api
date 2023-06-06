@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/style.css', type='text/css')
+    title Trabalho
+    style
+      include style.css
+  head
+  body
+  div(class="container")
+    div( class="email-box")
+      h2(class="header") Bem-vindo ao seu email
+        form(action="/data" method="get" id="emailForm")
+
+          h3(for="email" class="email-input") Destinatário
+          input( type="email" name="email" class="email-input" id="recipient" placeholder="Digite seu e-mail" required)
+          br
+          br
+
+          h3(for="subject" class="subject-input") Assunto
+          input(type="text", class="subject-input" name="subject", id="subject", placeholder="Digite o assunto", required)
+          br
+          br
+
+          h3(for="body" class="message-input") Mensagem
+          textarea( class="message-input" name="body" id="body" placeholder="Digite sua mensagem")
+          br
+          br
+
+          button( type="submit" class="submit-btn") Enviar
+        form
+      div
+    div
+  body
+html
