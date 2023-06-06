@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trabalho</title>
+  <style>
+    body {
+      background-color: #808080;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .email-box {
+      padding: 20px;
+      background-color: #333;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .email-input {
+      width: 300px;
+      height: 30px;
+      padding: 5px;
+      border: none;
+      border-radius: 3px;
+      font-size: 16px;
+    }
+    
+    .message-input {
+      width: 300px;
+      height: 100px;
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 7px;
+    }
+    
+    .submit-btn {
+      margin-top: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="email-box">
+      <h2>Bem vindo ao seu email</h2>
+      <form id="emailForm">
+        <input type="email" class="email-input" id="recipient" placeholder="Digite seu e-mail" required>
+        <br>
+        <textarea class="message-input" id="body" placeholder="Digite sua mensagem"></textarea>
+        <br>
+        <button type="submit" class="submit-btn">Enviar</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
