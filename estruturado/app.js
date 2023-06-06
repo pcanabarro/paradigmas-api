@@ -1,43 +1,50 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
-const dataFromFront = require('./inputs')
+const express = require('express')
+const path = require('path')
+const nodemailer = require('nodemailer')
 
-const app = express();
-app.use(express.json());
-app.use(express.static('public'))
+const app = express()
+// app.use(express.json())
+// app.use(express.urlencoded({extended: true}))
+app.set('view engine', 'pug')
+app.set('views', 'views')
 
-app.post('/email', (req, res) => {
-  console.log(dataFromFront)
-  const { to, subject, text } = dataFromFront;
+app.get('/email', (req, res) => {
+  res.render('test')
+})
+
+app.get('/data', (req, res) => {
+  const { email, subject, body } = req.query
+  // console.log(res)
+  console.log(email, subject, body)
 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.example.com',
+    host: 'smtp.gmail.com',
     port: 587,
     secure: false,
     auth: {
-      user: 'your-email@example.com',
-      pass: 'your-password',
+      user: 'pcanabarro.adp@gmail.com',
+      pass: '',
     },
-  });
+  })
 
   const mailOptions = {
-    from: 'testmail@unilasalle.test',
-    to,
-    subject,
-    text,
-  };
+    from: 'pcanabarro.adp@gmail.com',
+    to: email,
+    subject: subject,
+    text: body,
+  }
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error('Erro no envio do email:', error);
-      res.status(500).json({ error: 'Falha no envio do email' });
+      console.error('Erro no envio do email:', error)
+      res.status(500).json({ error: 'Falha no envio do email' })
     } else {
-      console.log('Email enviado:', info.response);
-      res.status(200).json({ message: 'Email enviado com sucesso' });
+      console.log('Email enviado:', info.response)
+      res.status(200).json({ message: 'Email enviado com sucesso' })
     }
-  });
-});
+  })
+})
 
 app.listen(3000, () => {
-  console.log('Server Estruturado rodando na porta 3000');
-});
+  console.log('Server Estruturado rodando na porta 3000')
+})
