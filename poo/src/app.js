@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const Router = require('./routes/router')
 
 class App {
   constructor() {
@@ -7,11 +8,12 @@ class App {
     this.port = 3000;
     this.app.use(express.json());
     this.app.use(express.static(path.join(__dirname, 'public')));
+    this.app.use(Router.getRouter)
   }
 
   start() {
     this.app.listen(this.port, () => {
-      console.log(`Server is running on port ${this.port}`);
+      console.log(`Server rodando na porta ${this.port}`);
     });
   }
 
