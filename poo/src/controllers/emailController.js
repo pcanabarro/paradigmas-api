@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config({path: '../.env'})
 
 class EmailController {
   static async getInfo(req, res) {
@@ -11,17 +12,15 @@ class EmailController {
       console.log(email, subject, body)
 
       const transporter = nodemailer.createTransport({
-        host: 'smtp.example.com',
-        port: 587,
-        secure: false,
+        service: "outlook",
         auth: {
-          user: 'pedroh',
-          pass: 'your-password',
-        },
+          user: 'pedroh.canabarro@hotmail.com',
+          pass: process.env.PASSWORD,
+        }
       });
 
       const mailOptions = {
-        from: 'testmail@unilasalle.test',
+        from: 'pedroh.canabarro@hotmail.com',
         to: email,
         subject: subject,
         text: body,
